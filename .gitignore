@@ -1,0 +1,8 @@
+# General
+**/*.a
+**/*.o
+**/*.out
+**/*.swp
+**/vgcore*
+
+# Specifics
