@@ -6,7 +6,7 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2024/04/22 15:22:11 by chlimous         ###   ########.fr        #
+#    Updated: 2024/04/28 04:33:45 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,12 +59,16 @@ debv: $(NAME)
 	@valgrind --leak-check=full ./$(NAME)
 
 clean:
-	make clean -C libft
 	rm -f $(OBJS)
+	@if [ -d "$(LIBFT_DIR)" ]; then \
+		make clean -C $(LIBFT_DIR); \
+	fi
 
 fclean: clean
-	make fclean -C libft
 	rm -f $(NAME)
+	@if [ -d "$(LIBFT_DIR)" ]; then \
+		make fclean -C $(LIBFT_DIR); \
+	fi
 
 re: fclean all
 
