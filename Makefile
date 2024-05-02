@@ -6,7 +6,7 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2024/04/28 04:33:45 by chlimous         ###   ########.fr        #
+#    Updated: 2024/05/02 21:27:28 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDE = include
 
-INCLUDES = -I $(INCLUDE)
+INCLUDES = -I $(INCLUDE) -I $(LIBFT_DIR)
 
 LIBFT_DIR = libft
 
