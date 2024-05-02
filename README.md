@@ -2,7 +2,12 @@
 
 ![libft](init_script.png)
 
-To make it work, add ~/bin to your PATH:
+To install:
 ```bash
-export PATH="$HOME/bin:$PATH"
+sh install.sh
+```
+
+Usage:
+```bash
+rinit
 ```
