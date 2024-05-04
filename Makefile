@@ -6,19 +6,19 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2024/05/02 21:27:28 by chlimous         ###   ########.fr        #
+#    Updated: 2024/05/04 23:55:25 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bin.out
 
-SRCS = main.c
+SRCS = $(addprefix src/, main.c)
 
 OBJS = $(SRCS:.c=.o)
 
 INCLUDE = include
 
-INCLUDES = -I $(INCLUDE) -I $(LIBFT_DIR)
+INCLUDES = -I $(INCLUDE) -I $(LIBFT_DIR)/include
 
 LIBFT_DIR = libft
 
