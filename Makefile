@@ -6,33 +6,27 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/20 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2024/05/04 23:55:25 by chlimous         ###   ########.fr        #
+#    Updated: 2024/11/21 09:47:45 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bin.out
-
-SRCS = $(addprefix src/, main.c)
-
-OBJS = $(SRCS:.c=.o)
-
+SRCDIR = src
+OBJDIR = obj
+SRCS = $(addprefix $(SRCDIR)/, main.c)
+OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 INCLUDE = include
-
 INCLUDES = -I $(INCLUDE) -I $(LIBFT_DIR)/include
-
 LIBFT_DIR = libft
-
 LIBFT = $(LIBFT_DIR)/libft.a
-
 CC = cc
-
 CFLAGS = -Wall -Wextra -Werror
-
 C_GREEN=\e[32m
 C_END=\e[0m
 
-%.o: %.c $(INCLUDE)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $(<:.c=.o)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDE)
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all: $(NAME)
 
@@ -59,7 +53,7 @@ debv: $(NAME)
 	@valgrind --leak-check=full ./$(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 	@if [ -d "$(LIBFT_DIR)" ]; then \
 		make clean -C $(LIBFT_DIR); \
 	fi
