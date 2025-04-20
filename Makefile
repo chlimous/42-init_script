@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/20 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2024/11/21 09:47:45 by chlimous         ###   ########.fr        #
+#    Created: 2023/12/01 00:00:00 by chlimous          #+#    #+#              #
+#    Updated: 2025/04/15 00:00:00 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bin.out
-SRCDIR = src
-OBJDIR = obj
+BIN = bin.out
+SRCDIR = source
+OBJDIR = build
 SRCS = $(addprefix $(SRCDIR)/, main.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
 INCLUDE = include
@@ -28,10 +28,10 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDE)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-all: $(NAME)
+all: $(BIN)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_DIR) -l ft -o $(NAME)
+$(BIN): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_DIR) -l ft -o $(BIN)
 
 bonus: all
 
@@ -46,11 +46,11 @@ $(LIBFT): FORCE
 
 FORCE:
 
-deb: $(NAME)
-	@./$(NAME)
+deb: $(BIN)
+	@./$(BIN)
 
-debv: $(NAME)
-	@valgrind --leak-check=full ./$(NAME)
+debv: $(BIN)
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(BIN)
 
 clean:
 	rm -rf $(OBJDIR)
@@ -59,7 +59,7 @@ clean:
 	fi
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(BIN)
 	@if [ -d "$(LIBFT_DIR)" ]; then \
 		make fclean -C $(LIBFT_DIR); \
 	fi
