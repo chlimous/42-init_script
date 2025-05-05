@@ -6,7 +6,7 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2025/04/15 00:00:00 by chlimous         ###   ########.fr        #
+#    Updated: 2025/05/05 15:53:03 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,20 @@ SRCDIR = source
 OBJDIR = build
 SRCS = $(addprefix $(SRCDIR)/, main.c)
 OBJS = $(patsubst $(SRCDIR)/%.c,$(OBJDIR)/%.o,$(SRCS))
-INCLUDE = include
-INCLUDES = -I $(INCLUDE) -I $(LIBFT_DIR)/include
+INCLUDE = -I include -I $(LIBFT_DIR)/include
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 C_GREEN=\e[32m
 C_END=\e[0m
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDE)
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
 all: $(BIN)
+
+-include $(OBJS:.o=.d)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(BIN): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) -L $(LIBFT_DIR) -l ft -o $(BIN)
@@ -66,4 +66,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all FORCE clean fclean re
+.PHONY: all bonus FORCE deb debv clean fclean re

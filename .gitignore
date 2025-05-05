@@ -1,6 +1,7 @@
 # General
 **/*.a
 **/*.o
+**/*.d
 **/*.out
 **/*.swp
 **/vgcore*
