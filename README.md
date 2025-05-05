@@ -4,7 +4,14 @@
 
 To install:
 ```bash
-sh install.sh
+chmod +x install.sh
+./install.sh
+```
+
+To uninstall:
+```bash
+chmod +x uninstall.sh
+./uninstall.sh
 ```
 
 Usage:
