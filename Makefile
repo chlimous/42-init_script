@@ -6,7 +6,7 @@
 #    By: chlimous <chlimous@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/01 00:00:00 by chlimous          #+#    #+#              #
-#    Updated: 2025/05/05 15:53:03 by chlimous         ###   ########.fr        #
+#    Updated: 2025/05/18 17:25:02 by chlimous         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,12 @@ $(BIN): $(OBJS) $(LIBFT)
 bonus: all
 
 $(LIBFT): FORCE
-	@echo "$(C_GREEN)Compiling libft...$(C_END)"
+	@echo -e "$(C_GREEN)Compiling libft...$(C_END)"
 	@output="$$(make -C libft)"; \
 	if echo "$$output" | grep -q 'is up to date'; then \
-		echo "$(C_GREEN)libft is already up to date.$(C_END)"; \
+		echo -e "$(C_GREEN)libft is already up to date.$(C_END)"; \
 	else \
-		echo "$(C_GREEN)libft succesfully compiled.$(C_END)"; \
+		echo -e "$(C_GREEN)libft succesfully compiled.$(C_END)"; \
 	fi
 
 FORCE:
